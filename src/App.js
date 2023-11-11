@@ -11,7 +11,7 @@ export default function App() {
         <Route path="/" element={<Login />}></Route>
         // TODO: Change Login to Home 
       ) : (
-        <Route path="/" element={<Home />}></Route>
+        <Route path="/" element={<Login />}></Route>
       )}
     </Routes>
   )

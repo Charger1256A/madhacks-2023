@@ -5,7 +5,7 @@ import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
 import axios from 'axios';
 
-const PORT = 5000;
+const URL = "http://127.0.0.1:5000";
 
 export default function Login(props) {
   const [mode, setMode] = useState("login");
@@ -16,7 +16,7 @@ export default function Login(props) {
   const [confirmPassword, setSignupConfirmPassword] = useState("TEST***");
 
   const signup = () => {
-    axios.post(`http://localhost:${PORT}/signup`, {
+    axios.post(`${URL}/signup`, {
       username: usernameSignUp,
       password: signupPassword,
       confirmPassword: confirmPassword
@@ -30,7 +30,8 @@ export default function Login(props) {
   }
 
   const login = () => {
-    axios.post(`http://localhost:${PORT}/login`, {
+    console.log("blahhh")
+    axios.post(`http://127.0.0.1:5000/login`, {
       username: usernameLogin,
       password: setLoginPassword,
     })
@@ -38,6 +39,7 @@ export default function Login(props) {
       console.log(res.data);
     })
     .catch(err => {
+      console.log("test")
       console.log(err);
     })
   }
