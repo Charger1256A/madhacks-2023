@@ -18,7 +18,7 @@ export default function Home() {
                 <h1>Match</h1>
                 <Match/>
                 </div>
-                <div className="movie">
+                <div className="Movie">
 
                 </div>
             </div>
