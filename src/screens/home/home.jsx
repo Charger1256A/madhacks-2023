@@ -1,11 +1,14 @@
 import MovieCard from "../../components/MovieCard";
-import Match from "../../components/Match";
+import "./home.css";
 
 export default function Home() {
   return (
     <>
-      <MovieCard />
-      <Match />
+      <div className="movie-wrapper">
+        <button>No</button>
+        <MovieCard />
+        <button>Yes</button>
+      </div>
     </>
   );
 }
