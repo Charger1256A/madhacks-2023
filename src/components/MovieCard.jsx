@@ -14,7 +14,7 @@ export default function MovieCard() {
   }, []);
 
   return (
-    <Card sx={{ display: "flex" }}>
+    <Card sx={{ maxWidth: 500 }}>
       <Box sx={{ display: "flex", flexDirection: "column" }}>
         <CardContent sx={{ flex: "1 0 auto" }}>
           <Typography component="div" variant="h5">

@@ -1,3 +1,11 @@
+import MovieCard from "../../components/MovieCard";
+import Match from "../../components/Match";
+
 export default function Home() {
-  return <div>Home</div>;
+  return (
+    <>
+      <MovieCard />
+      <Match />
+    </>
+  );
 }
