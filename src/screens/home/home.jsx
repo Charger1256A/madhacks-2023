@@ -1,6 +1,11 @@
 import { useState, useEffect } from "react";
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import Card  from "@mui/material";
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import Match from "../../components/match"
+
 
 export default function Home() {
     return (
@@ -10,7 +15,8 @@ export default function Home() {
             </div>
             <div className="body">
                 <div className="matcher">
-                <TextField className="matcher" id="standard-basic" label="Enter Match ID" variant="standard" type="" />
+                <h1>Match</h1>
+                <Match/>
                 </div>
                 <div className="movie">
 
