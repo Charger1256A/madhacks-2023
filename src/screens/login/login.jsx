@@ -3,14 +3,45 @@ import "./login.css"
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Button from '@mui/material/Button';
+import axios from 'axios';
 
+const PORT = 5000;
 
-export default function Login() {
+export default function Login(props) {
   const [mode, setMode] = useState("login");
-  const[username, setUsername] = useState("");
-  const[password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  
+  const[usernameLogin, setLoginUsername] = useState("");
+  const[loginPassword, setLoginPassword] = useState("");
+  const [usernameSignUp, setSignupUsername] = useState("");
+  const [signupPassword, setSignupPassword] = useState("");
+  const [confirmPassword, setSignupConfirmPassword] = useState("TEST***");
+
+  const signup = () => {
+    axios.post(`http://localhost:${PORT}/signup`, {
+      username: usernameSignUp,
+      password: signupPassword,
+      confirmPassword: confirmPassword
+    })
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  const login = () => {
+    axios.post(`http://localhost:${PORT}/login`, {
+      username: usernameLogin,
+      password: setLoginPassword,
+    })
+    .then(res => {
+      console.log(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+   
 
   return (
     <div className="container">
@@ -20,24 +51,22 @@ export default function Login() {
           <div className="box">
             <Button className="sign-up" onClick={() => setMode("signup")}>Sign Up</Button>
             <h1>Login</h1>
-              <TextField className="login-content" id="input-with-sx" label="Enter username" variant="standard" value={username} onChange={(e) => setUsername(e.target.value)}/>
+              <TextField className="login-content" id="input-with-sx" label="Enter username" variant="standard" value={usernameLogin} onChange={(e) => setLoginUsername(e.target.value)}/>
   
-            <TextField className="login-content" id="standard-basic" label="Enter password" variant="standard" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <TextField className="login-content" id="standard-basic" label="Enter password" variant="standard" type="password" value={loginPassword} onChange={(e) => setLoginPassword(e.target.value)}/>
   
-            <Button className="login-content">Login</Button>
+            <Button className="login-content" onClick={() => login()}>Login</Button>
            </div>
         ) : (
           <div className="box">
             <Button className="sign-up" onClick={() => setMode("login")}>Back</Button>
             <h1>Signup</h1>
-                <TextField className="login-content" id="input-with-sx" label="Enter username" variant="standard" value={username} onChange={(e) => setUsername(e.target.value)}/>
-      
+                <TextField className="login-content" id="input-with-sx" label="Enter username" variant="standard" value={usernameSignUp} onChange={(e) => setSignupUsername(e.target.value)}/>
     
-              <TextField className="login-content" id="standard-basic" label="Enter password" variant="standard" type="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
-              <TextField className="login-content" id="standard-basic" label="Confirm password" variant="standard" type="password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)}/>
+              <TextField className="login-content" id="standard-basic" label="Enter password" variant="standard" type="password" value={signupPassword} onChange={(e) => setSignupPassword(e.target.value)}/>
+              <TextField className="login-content" id="standard-basic" label="Confirm password" variant="standard" type="password" value={confirmPassword} onChange={(e) => setSignupConfirmPassword(e.target.value)}/>
               
-    
-              <Button className="login-content">Signup</Button>
+              <Button className="login-content" onClick={() => signup()}>Signup</Button>
            </div>
         )}
        
