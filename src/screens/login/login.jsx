@@ -45,8 +45,6 @@ export default function Login(props) {
 
   return (
     <div className="container">
-      
-     
         {mode === "login" ? (
           <div className="box">
             <Button className="sign-up" onClick={() => setMode("signup")}>Sign Up</Button>
