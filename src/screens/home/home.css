@@ -40,10 +40,16 @@ main {
 }
 
 .movie-wrapper {
-  display: flex;
+   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
+  align-items: right;
+}
+.logoutmove {
+    position: absolute !important;
+    top: 25px !important;
+    right: 100px !important;
+    font-size: 20px !important;
 }
 
 button.round {

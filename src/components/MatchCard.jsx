@@ -16,10 +16,15 @@ import {
   DialogTitle,
 } from "@mui/material";
 import AddBoxTwoToneIcon from "@mui/icons-material/AddBoxTwoTone";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 
-export default function MatchCard() {
+const URL = "http://127.0.0.1:5000";
+
+export default function MatchCard(props) {
   const [open, setOpen] = React.useState(false);
+  const [username, setUsername] = useState("");
+  // const [matchingUsers, setMatchingUsers] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -28,13 +33,28 @@ export default function MatchCard() {
   const handleClose = () => {
     setOpen(false);
   };
-  const [matchingUsers, setMatchingUsers] = useState([
-    { id: 1, name: "Chaand" },
-    { id: 2, name: "Ritesh" },
-  ]);
+
+  const addFriend = () => {
+    axios.post(`${URL}/match`, {
+      friend: username,
+      friends: props.matchingUsers
+    }).then((response) => {
+      var localMatchingUsers = JSON.parse(JSON.stringify(props.matchingUsers));
+      localMatchingUsers.push({id: response.data.id, name: response.data.friend});
+      console.log(localMatchingUsers);
+      props.setMatchingUsers(localMatchingUsers);
+      console.log(JSON.stringify(response.data));
+      props.refreshMatches(localMatchingUsers);
+    }).catch((err) => alert(JSON.stringify(err.message)));
+    setOpen(false);
+    
+  }
+
+  
 
   const handleDelete = (id) => {
-    setMatchingUsers(matchingUsers.filter((item) => item.id !== id));
+    props.setMatchingUsers(props.matchingUsers.filter((item) => item.id !== id));
+    props.refreshMatches(props.matchingUsers.filter((item) => item.id !== id));
   };
 
   return (
@@ -53,11 +73,13 @@ export default function MatchCard() {
             type="name"
             fullWidth
             variant="standard"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
           />
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button onClick={handleClose}>Add</Button>
+          <Button onClick={() => addFriend()}>Add</Button>
         </DialogActions>
       </Dialog>
       <Card
@@ -77,7 +99,7 @@ export default function MatchCard() {
                 <AddBoxTwoToneIcon fontSize="large" onClick={handleClickOpen} />
               </IconButton>
             </Tooltip>
-            {matchingUsers.map((user) => (
+            {props.matchingUsers && props.matchingUsers.map((user) => (
               <Chip
                 key={user.id}
                 avatar={<Avatar>{user.name.slice(0, 2)}</Avatar>}
