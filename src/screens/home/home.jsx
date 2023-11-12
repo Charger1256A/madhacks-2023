@@ -6,6 +6,7 @@ import { Tooltip } from "@mui/material";
 import { useState } from "react";
 import Button from "@mui/material/Button";
 import axios from "axios";
+import Navbar from "../../components/Navbar";
 
 
 const URL = "http://127.0.0.1:5000";
@@ -70,9 +71,10 @@ export default function Home(props) {
   return (
     <main>
       <div className="movie-wrapper">
-        <Button className = "logoutmove"onClick={() => logout()}>Logout</Button>
+        {/* <Button className = "logoutmove"onClick={() => logout()}>Logout</Button> */}
+        <Navbar onLogout={logout} username={JSON.parse(localStorage.getItem("user")).user} className="navbar" />
 
-
+        
             <MovieCard count={id} updateMovie={(movie) => updateMovie(movie)} />
         
         

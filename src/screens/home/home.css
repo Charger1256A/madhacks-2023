@@ -45,6 +45,7 @@ main {
   justify-content: center;
   align-items: right;
 }
+
 .logoutmove {
     position: absolute !important;
     top: 25px !important;
@@ -98,4 +99,14 @@ button.redround:hover {
 button.redround:active {
   box-shadow: 0 0 2px darkslategray;
   transform: translateY(2px);
+}
+
+.navbar {
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+main {
+  padding-top: 20px;
 }
