@@ -19,29 +19,29 @@ export default function Login(props) {
     axios.post(`${URL}/signup`, {
       username: usernameSignUp,
       password: signupPassword,
-      confirmPassword: confirmPassword
+      confirmPassword: confirmPassword,
     })
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    .then(response => {
+      props.onLogin(response.data);
+      console.log(JSON.stringify(response.data));
+  })
+  .catch(err => {
+      alert(err.message);
+  })
   }
 
   const login = () => {
-    console.log("blahhh")
-    axios.post(`http://127.0.0.1:5000/login`, {
+    axios.post(`${URL}/login`, {
       username: usernameLogin,
-      password: setLoginPassword,
+      password: loginPassword,
     })
-    .then(res => {
-      console.log(res.data);
-    })
-    .catch(err => {
-      console.log("test")
-      console.log(err);
-    })
+    .then(response => {
+      props.onLogin(response.data)
+      console.log(JSON.stringify(response.data));
+  })
+  .catch(err => {
+      alert(err.message);
+  })
   }
    
 
