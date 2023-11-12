@@ -22,6 +22,7 @@ export default function Login(props) {
         confirmPassword: confirmPassword,
       })
       .then((res) => {
+        props.onLogin(res.data);
         console.log(res.data);
       })
       .catch((err) => {

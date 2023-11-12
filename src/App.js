@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Route, Routes } from "react-router-dom";
-import Home from "./screens/home/Home.jsx";
+import Home from "./screens/home/home.jsx";
 import Login from "./screens/login/login.jsx";
 
 export default function App() {
