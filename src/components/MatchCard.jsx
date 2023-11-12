@@ -24,7 +24,6 @@ const URL = "http://127.0.0.1:5000";
 export default function MatchCard(props) {
   const [open, setOpen] = React.useState(false);
   const [username, setUsername] = useState("");
-  // const [matchingUsers, setMatchingUsers] = useState([]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -84,16 +83,19 @@ export default function MatchCard(props) {
       </Dialog>
       <Card
         sx={{
-          marginLeft: "4rem",
-          minWidth: 300,
+          marginBottom: "2rem",
+          minWidth: 500,
           maxHeight: 512,
           display: "flex",
           flexDirection: "column",
           justifyContent: "space-between",
+          flexWrap: "wrap"
         }}
       >
         <CardContent>
+          <h1>Friends</h1>
           <Box sx={{ display: "flex", flexDirection: "row-reverse" }}>
+            
             <Tooltip title="Add user">
               <IconButton aria-label="add">
                 <AddBoxTwoToneIcon fontSize="large" onClick={handleClickOpen} />

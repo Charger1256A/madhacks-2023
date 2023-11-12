@@ -31,15 +31,16 @@ export default function Home(props) {
 
   const likedMovie = () => {
     axios.post(`${URL}/liked`, {
-      movieId: currMovie[id].id,
+      movieId: currMovie[id].title,
       friends: matchingUsers,
       user: JSON.parse(localStorage.getItem("user")).user
     }).then((response) => {
         console.log(JSON.stringify(response.data));
-    }).catch((err) => { alert(err.message) });  
-
-   refreshMatches(null);
-   setId(id + 1)
+        refreshMatches(null);
+        
+    }).catch((err) => { console.log(err.message) });  
+    setId(id + 1)
+   
   }
 // 8===========D 8====D 8===D 8==D 8=D 8D
   const refreshMatches = (updatedUsers) => {
@@ -74,7 +75,7 @@ export default function Home(props) {
         {/* <Button className = "logoutmove"onClick={() => logout()}>Logout</Button> */}
         <Navbar onLogout={logout} username={JSON.parse(localStorage.getItem("user")).user} className="navbar" />
 
-        
+
             <MovieCard count={id} updateMovie={(movie) => updateMovie(movie)} />
         
         
@@ -94,7 +95,7 @@ export default function Home(props) {
           </Tooltip>
         </div>
       </div>
-      <div>
+      <div className="matching-wrapper">
       <MatchCard matchingUsers={matchingUsers} setMatchingUsers={setMatchingUsers} refreshMatches={refreshMatches}/>
       <UserCard matches={matches}/>
       </div>
